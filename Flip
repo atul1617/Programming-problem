@@ -1,0 +1,27 @@
+vector<int> Solution::flip(string str) {
+    vector<int>ans;
+    int count=0;
+    for(int i=0;i<str.length();i++){
+        if(str[i]=='1') count++;
+        else break;
+    }
+    if(count==str.length()) return ans;
+    int diff=0,ansdiff=0,left=1,right=1,ansl,ansr;
+    for(int i=0;i<str.length();i++){
+        if(str[i]=='0') diff++;
+        else diff--;
+        if(diff>ansdiff){
+            ansdiff=diff;
+            ansl=left;
+            ansr=right;
+        }
+        if(diff<0){
+            diff=0;
+            left=i+1+1;
+        }
+        right++;
+    }
+    ans.push_back(ansl);
+    ans.push_back(ansr);
+    return ans;
+}
